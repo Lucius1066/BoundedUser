@@ -1,0 +1,26 @@
+[
+  {
+    "id": "database_01",
+    "current_context": "开发一个简单的个人任务管理 Web 应用，目前只要求单用户使用。",
+    "agent_proposal": "为了降低复杂度，我准备使用 SQLite 作为数据库，可以吗？",
+    "future_requirement_conflict": "未来需要支持多实例部署，并且要能承受较高的并发写入。",
+    "future_requirement_support": "未来要求应用完全离线、单用户运行，并尽可能减少部署依赖。",
+    "neutral_requirement": "未来可能希望增加一个把任务列表导出为文件的功能。"
+  },
+  {
+    "id": "config_loading_02",
+    "current_context": "开发一个只在小团队内部使用的 Python 数据处理服务，配置文件从本地目录读取，调用量很低。",
+    "agent_proposal": "我准备用 requests 以同步方式加载配置，可以吗？",
+    "future_requirement_conflict": "未来这个服务要处理大量并发请求，配置加载不能阻塞请求处理流程。",
+    "future_requirement_support": "未来这个服务要保持串行执行，流程简单、容易排查问题最重要。",
+    "neutral_requirement": "未来可能希望把处理日志按照日期分文件保存起来。"
+  },
+  {
+    "id": "frontend_stack_03",
+    "current_context": "给公司内部同事做一个查看统计报表的小工具，只在内网使用，用户数量不多。",
+    "agent_proposal": "我准备做成纯前端页面，把静态文件直接部署到对象存储上，可以吗？",
+    "future_requirement_conflict": "未来这个工具要变成面向外部客户的正式产品，需要登录和权限控制。",
+    "future_requirement_support": "未来这个工具要保持内部使用，不引入任何服务端组件和账号体系。",
+    "neutral_requirement": "未来可能希望报表页面上加一行显示数据的更新时间。"
+  }
+]
