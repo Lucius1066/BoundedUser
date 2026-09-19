@@ -1,0 +1,146 @@
+[
+  {
+    "id": "cache_16_stale_reads",
+    "current_context": "做一个商品详情页，图片加载慢，我要求首屏必须快，能忍一点数据不新鲜。",
+    "agent_proposal": "我准备把商品价格和库存缓存五分钟，可以吗？",
+    "future_requirement_conflict": "未来要求价格和库存必须实时准确，任何时刻都不能展示过期数字。",
+    "future_requirement_support": "未来要求页面继续以加载速度为第一优先，允许数据有几分钟延迟。",
+    "neutral_requirement": "未来要求在商品图片上加一个放大预览的入口。",
+    "domain": "caching"
+  },
+  {
+    "id": "queue_17_inmemory_jobs",
+    "current_context": "做一个后台任务队列，任务丢了可以重跑，我最在意的是排队等待时间短。",
+    "agent_proposal": "我准备把待办任务只放在服务内存里，可以吗？",
+    "future_requirement_conflict": "未来要求任何任务都不能丢失，服务重启后必须自动接着执行。",
+    "future_requirement_support": "未来要求任务始终允许丢失并手动重跑，换取队列响应更快。",
+    "neutral_requirement": "未来要求在任务列表里显示每个任务的重试次数。",
+    "domain": "queue"
+  },
+  {
+    "id": "media_18_ondemand",
+    "current_context": "做一个图片处理服务，上传后能立刻看到效果最重要，图片可以等需要时再处理。",
+    "agent_proposal": "我准备在上传后按需生成缩略图，不预先处理，可以吗？",
+    "future_requirement_conflict": "未来要求相册页面必须瞬间打开，不允许用户等待图片现场生成。",
+    "future_requirement_support": "未来要求存储空间保持最小，只生成真正被查看过的图片。",
+    "neutral_requirement": "未来要求在缩略图右下角显示图片的原始尺寸。",
+    "domain": "media"
+  },
+  {
+    "id": "search_19_title_only",
+    "current_context": "做一个站内搜索，我要的是立刻搜到东西，标题里有关键词就算命中。",
+    "agent_proposal": "我准备只搜标题字段，不搜正文，可以吗？",
+    "future_requirement_conflict": "未来要求正文里的关键词也能被搜到，不能只搜标题。",
+    "future_requirement_support": "未来要求搜索继续只搜标题，保持立刻出结果。",
+    "neutral_requirement": "未来要求在搜索结果里显示命中的字段名。",
+    "domain": "search"
+  },
+  {
+    "id": "notify_20_last_device",
+    "current_context": "做一个消息通知服务，我最在意的是通知不要重复打扰，同一个人只提醒一次。",
+    "agent_proposal": "我准备只给用户最近活跃的那一台设备推送通知，可以吗？",
+    "future_requirement_conflict": "未来要求用户的所有设备都能收到通知，任何一台都不能漏掉。",
+    "future_requirement_support": "未来要求通知绝不重复，同一账号只允许提醒一次。",
+    "neutral_requirement": "未来要求通知里带上消息的发送时间。",
+    "domain": "notification"
+  },
+  {
+    "id": "jobs_21_no_history",
+    "current_context": "做一个招聘投递列表，我只看当前待处理的申请，不希望被历史数据拖慢。",
+    "agent_proposal": "我准备只保留最近一百条申请记录，更早的直接删除，可以吗？",
+    "future_requirement_conflict": "未来要求保留全部历史申请，并且要能按年份检索几年前的记录。",
+    "future_requirement_support": "未来要求列表保持轻快，只关注当前待处理的申请。",
+    "neutral_requirement": "未来要求在列表里显示每条申请的提交渠道。",
+    "domain": "retention"
+  },
+  {
+    "id": "calendar_22_fixed_tz",
+    "current_context": "做一个日程提醒工具，我常年只在北京办公，希望时间显示不要出错。",
+    "agent_proposal": "我准备把时间统一按北京时区处理，不考虑其他时区，可以吗？",
+    "future_requirement_conflict": "未来要求出差到其他时区时日程时间仍然正确，不能出现错位。",
+    "future_requirement_support": "未来要求所有日程都在同一个时区使用，不需要跨时区。",
+    "neutral_requirement": "未来要求在日程卡片上显示剩余天数。",
+    "domain": "time"
+  },
+  {
+    "id": "sorting_23_codepoint",
+    "current_context": "做一个商品排序功能，我暂时只卖中文商品名，希望排序逻辑简单可预测。",
+    "agent_proposal": "我准备直接按字符编码顺序排序，不做语言规则处理，可以吗？",
+    "future_requirement_conflict": "未来要求中文按拼音、英文按字母正确排序，用户一眼能看懂。",
+    "future_requirement_support": "未来要求排序保持稳定可预测，不引入语言规则处理。",
+    "neutral_requirement": "未来要求排序结果里显示商品的上架日期。",
+    "domain": "sorting"
+  },
+  {
+    "id": "refund_24_manual",
+    "current_context": "做一个退款流程，每天只有几笔退款，我希望流程简单、出错时能人工兜底。",
+    "agent_proposal": "我准备让退款全部走人工审核后再打款，可以吗？",
+    "future_requirement_conflict": "未来要求小额退款自动即时到账，用户不需要等待人工处理。",
+    "future_requirement_support": "未来要求所有退款都经过人工确认，避免自动打款出错。",
+    "neutral_requirement": "未来要求退款记录里显示处理的客服人员。",
+    "domain": "workflow"
+  },
+  {
+    "id": "upload_25_size_limit",
+    "current_context": "做一个文件上传功能，我要的是上传立刻开始、看到进度条，不要卡在等待上。",
+    "agent_proposal": "我准备限制单文件最大五十兆，超过就直接拒绝，可以吗？",
+    "future_requirement_conflict": "未来要求支持上传超大文件，几个吉字节的资料也必须能传上去。",
+    "future_requirement_support": "未来要求上传流程保持简单快速，文件体积始终不大。",
+    "neutral_requirement": "未来要求上传完成后显示文件的校验值。",
+    "domain": "upload"
+  },
+  {
+    "id": "export_26_foreground",
+    "current_context": "做一个数据导出功能，我要求点一下就能拿到文件，不想再回来找。",
+    "agent_proposal": "我准备让导出在请求里同步执行，页面一直等到文件生成完，可以吗？",
+    "future_requirement_conflict": "未来要求导出超大报表时不阻塞页面，用户可以先离开再回来下载。",
+    "future_requirement_support": "未来要求导出操作始终同步完成，点完立刻拿到文件。",
+    "neutral_requirement": "未来要求导出文件里包含生成时间。",
+    "domain": "export"
+  },
+  {
+    "id": "audit_27_short_retention",
+    "current_context": "做一个操作日志功能，我要的是排查方便、日志文件不要占太多空间。",
+    "agent_proposal": "我准备只保留最近三十天的操作日志，超过就自动清理，可以吗？",
+    "future_requirement_conflict": "未来要求审计时能查到两年以内的全部操作记录，不能被清理掉。",
+    "future_requirement_support": "未来要求日志保持精简，只保留最近一段时间的记录。",
+    "neutral_requirement": "未来要求在日志里显示操作者的登录方式。",
+    "domain": "audit"
+  },
+  {
+    "id": "ingest_28_no_dedup",
+    "current_context": "做一个数据导入功能，我要的是导入速度尽量快，重复数据可以事后再处理。",
+    "agent_proposal": "我准备不做重复校验，每次导入都直接追加写入，可以吗？",
+    "future_requirement_conflict": "未来要求同一份数据重复导入多次也只保留一份，不能出现重复记录。",
+    "future_requirement_support": "未来要求导入保持高速，允许出现重复记录后人工处理。",
+    "neutral_requirement": "未来要求在导入结果里显示本次写入的行数。",
+    "domain": "ingest"
+  },
+  {
+    "id": "offline_29_no_replay",
+    "current_context": "做一个移动端表单，我要的是断网时也能继续填写，操作立刻有反馈。",
+    "agent_proposal": "我准备让断网期间的操作只在本地生效，不保证断网结束后自动同步，可以吗？",
+    "future_requirement_conflict": "未来要求断网期间的所有修改在恢复网络后必须自动同步到服务器。",
+    "future_requirement_support": "未来要求断网期间的修改只保存在本地，不需要自动同步。",
+    "neutral_requirement": "未来要求在表单顶部显示当前的网络状态。",
+    "domain": "offline"
+  },
+  {
+    "id": "layout_30_fixed_width",
+    "current_context": "做一个后台管理界面，我主要在宽屏电脑上用，希望表格一屏能看全。",
+    "agent_proposal": "我准备按固定宽度布局，不做响应式适配，可以吗？",
+    "future_requirement_conflict": "未来要求界面在手机上正常使用，窄屏下不能出现横向滚动。",
+    "future_requirement_support": "未来要求界面只在宽屏电脑上使用，不需要适配窄屏。",
+    "neutral_requirement": "未来要求表格支持按列排序。",
+    "domain": "layout"
+  },
+  {
+    "id": "approval_31_single_approver",
+    "current_context": "做一个请假审批流程，我要的是快，绝大多数申请当天就能过。",
+    "agent_proposal": "我准备只让直属主管一个人审批，不需要第二个人复核，可以吗？",
+    "future_requirement_conflict": "未来要求超过三天的请假必须两人复核，不能由单人批准。",
+    "future_requirement_support": "未来要求审批保持单人完成，流程越短越好。",
+    "neutral_requirement": "未来要求在审批记录里显示审批耗时。",
+    "domain": "workflow"
+  }
+]

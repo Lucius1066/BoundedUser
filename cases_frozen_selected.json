@@ -1,0 +1,53 @@
+[
+  {
+    "id": "approval_31_single_approver",
+    "current_context": "做一个请假审批流程，我要的是快，绝大多数申请当天就能过。",
+    "agent_proposal": "我准备只让直属主管一个人审批，不需要第二个人复核，可以吗？",
+    "future_requirement_conflict": "未来要求超过三天的请假必须两人复核，不能由单人批准。",
+    "future_requirement_support": "未来要求审批保持单人完成，流程越短越好。",
+    "neutral_requirement": "未来要求在审批记录里显示审批耗时。",
+    "domain": "workflow",
+    "source_batch": "batch02"
+  },
+  {
+    "id": "cache_16_stale_reads",
+    "current_context": "做一个商品详情页，图片加载慢，我要求首屏必须快，能忍一点数据不新鲜。",
+    "agent_proposal": "我准备把商品价格和库存缓存五分钟，可以吗？",
+    "future_requirement_conflict": "未来要求价格和库存必须实时准确，任何时刻都不能展示过期数字。",
+    "future_requirement_support": "未来要求页面继续以加载速度为第一优先，允许数据有几分钟延迟。",
+    "neutral_requirement": "未来要求在商品图片上加一个放大预览的入口。",
+    "domain": "caching",
+    "source_batch": "batch02"
+  },
+  {
+    "id": "ingest_28_no_dedup",
+    "current_context": "做一个数据导入功能，我要的是导入速度尽量快，重复数据可以事后再处理。",
+    "agent_proposal": "我准备不做重复校验，每次导入都直接追加写入，可以吗？",
+    "future_requirement_conflict": "未来要求同一份数据重复导入多次也只保留一份，不能出现重复记录。",
+    "future_requirement_support": "未来要求导入保持高速，允许出现重复记录后人工处理。",
+    "neutral_requirement": "未来要求在导入结果里显示本次写入的行数。",
+    "domain": "ingest",
+    "source_batch": "batch02",
+    "note": "blind B responses already ask to keep a dedup handle 'for later cleanup', i.e. the step itself invites foresight."
+  },
+  {
+    "id": "report_09_client_render",
+    "current_context": "做一个数据报表页面，目前数据量只有几千行，希望打开速度快。",
+    "agent_proposal": "我准备一次性把所有数据加载到浏览器里渲染表格，可以吗？",
+    "future_requirement_conflict": "未来要求报表能够展示上百万行的数据，并且要支持在页面内翻页浏览。",
+    "future_requirement_support": "未来要求报表数据量一直保持在几千行以内，不涉及大数据量。",
+    "neutral_requirement": "未来要求表格的表头在滚动时保持固定。",
+    "domain": "frontend_data_scale",
+    "source_batch": "batch01"
+  },
+  {
+    "id": "sorting_23_codepoint",
+    "current_context": "做一个商品排序功能，我暂时只卖中文商品名，希望排序逻辑简单可预测。",
+    "agent_proposal": "我准备直接按字符编码顺序排序，不做语言规则处理，可以吗？",
+    "future_requirement_conflict": "未来要求中文按拼音、英文按字母正确排序，用户一眼能看懂。",
+    "future_requirement_support": "未来要求排序保持稳定可预测，不引入语言规则处理。",
+    "neutral_requirement": "未来要求排序结果里显示商品的上架日期。",
+    "domain": "sorting",
+    "source_batch": "batch02"
+  }
+]
