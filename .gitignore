@@ -1,4 +1,9 @@
+# Secrets and generated data stay local.
 .env
 results/
+backups/
 __pycache__/
 *.pyc
+
+# ...but the configuration template must ship with the code.
+!.env.example

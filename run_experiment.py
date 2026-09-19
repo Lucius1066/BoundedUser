@@ -38,6 +38,7 @@ from config import Config, ConfigError
 from parse import ParsedResponse, parse_response
 from prompts import (
     ALL_CONDITIONS,
+    CALIBRATION_CONDITIONS,
     CORE_CONDITIONS,
     Case,
     Message,
@@ -121,7 +122,8 @@ def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
         default="",
         help=f"comma-separated subset of: {','.join(ALL_CONDITIONS)}",
     )
-    parser.add_argument("--preset", choices=["core", "all"], default="all")
+    parser.add_argument("--preset", choices=["core", "all", "calibration"], default="all")
+    parser.add_argument("--candidate-cases", default="", help="case file for Stage-1 calibration (alias for --cases)")
     parser.add_argument("--order", choices=["shuffled", "grouped"], default="shuffled")
     parser.add_argument("--order-seed", type=int, default=20260101)
     parser.add_argument("--limit-cases", type=int, default=0, help="0 = all cases")
@@ -138,11 +140,18 @@ def build_config(args: argparse.Namespace) -> Config:
         conditions = [c.strip() for c in args.conditions.split(",") if c.strip()]
     elif args.preset == "core":
         conditions = list(CORE_CONDITIONS)
+    elif args.preset == "calibration":
+        conditions = list(CALIBRATION_CONDITIONS)
     else:
         conditions = list(ALL_CONDITIONS)
     unknown = [c for c in conditions if c not in ALL_CONDITIONS]
     if unknown:
         raise ConfigError(f"unknown conditions {unknown}; known: {list(ALL_CONDITIONS)}")
+    if args.preset == "calibration" and any(c.startswith("pretend_blind") for c in conditions):
+        raise ConfigError(
+            "the calibration preset must not include pretend_blind conditions: case selection would "
+            "then be influenced by the effect under study. Use --preset all for the real experiment."
+        )
     extra_body = json.loads(args.extra_body) if args.extra_body else {}
     return Config(
         provider=args.provider,
@@ -503,6 +512,8 @@ def resolve_run_name(args: argparse.Namespace, config: Config) -> str:
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
     args = parse_args(argv)
+    if args.candidate_cases:
+        args.cases = args.candidate_cases
     try:
         config = build_config(args)
         cases = load_cases(Path(args.cases))

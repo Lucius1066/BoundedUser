@@ -81,6 +81,14 @@ CORE_CONDITIONS: Tuple[str, ...] = (
     FULL_INFO_SUPPORT,
 )
 
+#: Stage-1 instrument calibration: never include a pretend_blind condition, so that
+#: case selection cannot be influenced by the effect the study is trying to measure.
+CALIBRATION_CONDITIONS: Tuple[str, ...] = (
+    BLIND,
+    FULL_INFO_CONFLICT,
+    FULL_INFO_SUPPORT,
+)
+
 #: controls added on top of the original design
 EXTRA_CONDITIONS: Tuple[str, ...] = (
     PRETEND_BLIND_NOREQ,
@@ -227,6 +235,9 @@ class Case:
     future_requirement_conflict: str
     future_requirement_support: str
     neutral_requirement: str = DEFAULT_NEUTRAL_REQUIREMENT
+    #: optional free-text grouping label (e.g. "storage", "sync"); recorded in results
+    #: so calibration can be read per domain
+    domain: str = ""
 
     def requirement(self, variant: str) -> Optional[str]:
         if variant in ("none", "noreq"):

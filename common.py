@@ -174,5 +174,7 @@ def load_cases(path: Path) -> List[Case]:
         kwargs = {key: str(item[key]).strip() for key in _REQUIRED_FIELDS}
         if str(item.get("neutral_requirement", "")).strip():
             kwargs["neutral_requirement"] = str(item["neutral_requirement"]).strip()
+        if str(item.get("domain", "")).strip():
+            kwargs["domain"] = str(item["domain"]).strip()
         cases.append(Case(**kwargs))
     return cases

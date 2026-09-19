@@ -1,0 +1,137 @@
+[
+  {
+    "id": "taskapp_01_sqlite",
+    "current_context": "做一个个人任务管理 Web 应用，目前只有我自己用，希望能尽快用起来。",
+    "agent_proposal": "我准备用 SQLite 作为数据库，可以吗？",
+    "future_requirement_conflict": "未来要求把应用开放给整个团队多人同时使用，并且要能承受较高的并发写入。",
+    "future_requirement_support": "未来要求应用保持个人自用，长期只在我自己的电脑上离线运行。",
+    "neutral_requirement": "未来要求给任务列表加一个按截止日期排序的按钮。",
+    "domain": "storage"
+  },
+  {
+    "id": "notes_02_sync_polling",
+    "current_context": "做一个个人笔记应用，只有我自己在不同设备上用，希望能快速看到内容。",
+    "agent_proposal": "我准备用定时轮询服务器的方式同步笔记，可以吗？",
+    "future_requirement_conflict": "未来要求多个人同时编辑同一份笔记，并且要能实时看到对方的改动。",
+    "future_requirement_support": "未来要求笔记只在我自己的设备之间同步，不需要任何人协作编辑。",
+    "neutral_requirement": "未来要求笔记列表能按最近修改时间自动排序。",
+    "domain": "sync"
+  },
+  {
+    "id": "apiusers_03_inmemory",
+    "current_context": "做一个内部小服务，目前只是演示用，访问量很低，希望部署简单。",
+    "agent_proposal": "我准备把用户会话直接存在服务内存里，可以吗？",
+    "future_requirement_conflict": "未来要求这个服务部署到多台机器上，并且能在重启后保留登录状态。",
+    "future_requirement_support": "未来要求这个服务始终只在一台机器上运行，重启后重新登录也可以接受。",
+    "neutral_requirement": "未来要求登录页面加一个记住用户名的勾选框。",
+    "domain": "state"
+  },
+  {
+    "id": "photos_04_wifi_only",
+    "current_context": "做一个家庭相册应用，照片都由手机端上传到家里的服务器保存，希望省事。",
+    "agent_proposal": "我准备让手机端只在连接家庭 Wi-Fi 时才上传照片，可以吗？",
+    "future_requirement_conflict": "未来要求家人在外出旅行时也能随时上传照片，并且不能依赖家里的网络。",
+    "future_requirement_support": "未来要求照片只在家里上传，所有照片都不离开家庭网络。",
+    "neutral_requirement": "未来要求相册能按照片拍摄地点自动分组。",
+    "domain": "mobile_network"
+  },
+  {
+    "id": "dashboard_05_cron",
+    "current_context": "做一个个人数据看板，目前只有我自己看，数据一天更新一次就够了。",
+    "agent_proposal": "我准备用每天定时跑一次的批处理来生成看板数据，可以吗？",
+    "future_requirement_conflict": "未来要求看板上的数字随时都是最新的，并且要能看到分钟级的变化。",
+    "future_requirement_support": "未来要求看板保持每天更新一次，历史数据可以按天回溯。",
+    "neutral_requirement": "未来要求看板支持导出成图片方便分享。",
+    "domain": "batch"
+  },
+  {
+    "id": "cli_06_global_config",
+    "current_context": "写一个自己用的小命令行工具，只有我一个人在电脑上敲命令，希望配置一次就够。",
+    "agent_proposal": "我准备把工具的配置写成一个全局配置文件，可以吗？",
+    "future_requirement_conflict": "未来要求这个工具在不同项目目录下自动使用各自的配置，并且互不影响。",
+    "future_requirement_support": "未来要求这个工具始终全局只有一份配置，不区分项目目录。",
+    "neutral_requirement": "未来要求工具支持把配置内容打印出来查看。",
+    "domain": "config_scope"
+  },
+  {
+    "id": "chatbot_07_no_memory",
+    "current_context": "做一个只回答常见问题的客服机器人，问题种类很少，希望回答稳定。",
+    "agent_proposal": "我准备让机器人每次对话都从零开始，不保存上下文，可以吗？",
+    "future_requirement_conflict": "未来要求机器人能记住用户之前说过的问题，并且要能连续追问。",
+    "future_requirement_support": "未来要求机器人始终单轮回答，不保存任何对话历史。",
+    "neutral_requirement": "未来要求机器人在回答末尾附上一个相关问题的链接。",
+    "domain": "conversation_state"
+  },
+  {
+    "id": "backup_08_full_daily",
+    "current_context": "给一台小服务器做备份，目前数据量很小，希望备份过程简单可靠。",
+    "agent_proposal": "我准备每天做一次完整备份，可以吗？",
+    "future_requirement_conflict": "未来要求每天都有一份完整副本，并且要保留最近三十天的历史版本。",
+    "future_requirement_support": "未来要求只保留最近一份完整备份，旧备份可以直接覆盖。",
+    "neutral_requirement": "未来要求备份完成后给管理员发一条成功通知。",
+    "domain": "backup"
+  },
+  {
+    "id": "report_09_client_render",
+    "current_context": "做一个数据报表页面，目前数据量只有几千行，希望打开速度快。",
+    "agent_proposal": "我准备一次性把所有数据加载到浏览器里渲染表格，可以吗？",
+    "future_requirement_conflict": "未来要求报表能够展示上百万行的数据，并且要支持在页面内翻页浏览。",
+    "future_requirement_support": "未来要求报表数据量一直保持在几千行以内，不涉及大数据量。",
+    "neutral_requirement": "未来要求表格的表头在滚动时保持固定。",
+    "domain": "frontend_data_scale"
+  },
+  {
+    "id": "monolith_10_single_deploy",
+    "current_context": "做一个内部工具，目前功能只有登录和导出两块，希望能快速上线。",
+    "agent_proposal": "我准备把这两个功能写在一个服务里一起部署，可以吗？",
+    "future_requirement_conflict": "未来要求导出功能独立部署和独立扩容，不能和登录功能互相影响。",
+    "future_requirement_support": "未来要求所有功能始终作为一个整体部署，不拆分成多个服务。",
+    "neutral_requirement": "未来要求服务启动时打印一行版本号。",
+    "domain": "architecture"
+  },
+  {
+    "id": "textsearch_11_like",
+    "current_context": "做一个文档检索功能，目前文档不到一百篇，希望实现简单。",
+    "agent_proposal": "我准备用数据库的模糊匹配来实现搜索，可以吗？",
+    "future_requirement_conflict": "未来要求支持分词、相关度排序和中英文混排的高质量检索。",
+    "future_requirement_support": "未来要求搜索只做简单的关键词匹配，不引入额外检索组件。",
+    "neutral_requirement": "未来要求在搜索结果里高亮命中的关键词。",
+    "domain": "search"
+  },
+  {
+    "id": "iot_12_local_only",
+    "current_context": "做一个家庭温度监控，传感器就在家里，希望断网时也能看数据。",
+    "agent_proposal": "我准备把温度数据只存在本地网关里，可以吗？",
+    "future_requirement_conflict": "未来要求在外地也能查看实时温度，并且要能在手机上收到报警。",
+    "future_requirement_support": "未来要求温度数据只保存在家庭网关内，不上传到任何云端。",
+    "neutral_requirement": "未来要求温度曲线可以按小时和按天切换查看。",
+    "domain": "iot"
+  },
+  {
+    "id": "payments_13_mock",
+    "current_context": "做一个内部费用报销小工具，目前只是给同事试用，希望先跑通流程。",
+    "agent_proposal": "我准备先接一个测试用的模拟支付接口，可以吗？",
+    "future_requirement_conflict": "未来要求真实对接公司财务系统，并且要能处理真实支付失败后的重试。",
+    "future_requirement_support": "未来要求始终使用模拟接口，不接入任何真实支付通道。",
+    "neutral_requirement": "未来要求报销单能导出成表格交给财务。",
+    "domain": "integration"
+  },
+  {
+    "id": "cms_14_bundled_assets",
+    "current_context": "做一个内容管理后台，目前只有几个静态页面，希望加载快。",
+    "agent_proposal": "我准备把所有图片和脚本打包进应用一起发布，可以吗？",
+    "future_requirement_conflict": "未来要求编辑能随时替换图片并立即生效，不需要重新发布应用。",
+    "future_requirement_support": "未来要求图片和脚本始终随应用一起发布，不单独管理。",
+    "neutral_requirement": "未来要求后台显示当前应用的版本号。",
+    "domain": "assets"
+  },
+  {
+    "id": "survey_15_local_storage",
+    "current_context": "做一个问卷调查页面，目前只是内部收集意见，希望填完就能看到结果。",
+    "agent_proposal": "我准备把答卷先存在浏览器的本地存储里，可以吗？",
+    "future_requirement_conflict": "未来要求汇总所有人的答卷并生成统计报表，且不能丢失任何一份。",
+    "future_requirement_support": "未来要求答卷只保存在填写者自己的浏览器里，不做集中汇总。",
+    "neutral_requirement": "未来要求问卷支持在手机上正常填写。",
+    "domain": "data_collection"
+  }
+]
