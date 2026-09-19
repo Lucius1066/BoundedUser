@@ -1,11 +1,13 @@
 # LLM User Simulator — privileged future information: phenomenon check
 
-> **设计文档**：`DESIGN.md`（v0.2）。交给外部审查（对方没有代码库）时用
+> **设计文档**：`DESIGN.md`（v0.3）。交给外部审查（对方没有代码库）时用
 > `python build_review_package.py` 生成 `REVIEW_PACKAGE.md`：设计文档 + 全部源码清单合成一份自包含 markdown。
-> 文档里的事实性声明由 `python verify_doc.py` 逐条对照代码校验（当前 37/37 通过）。
+> 文档里的事实性声明由 `python verify_doc.py` 逐条对照代码校验（当前 46/46 通过）。
 >
-> v0.2 依据一轮外部审查做了 6 处实质修改（真 blind、primary 改为 P(A)、headline 改为需求配对对比、
-> 修掉并发共享状态 bug、修掉分母不一致、删掉自相矛盾的 condition），逐条处理记录在 `DESIGN.md` §11。
+> 版本历史：v0.2 依据第一轮外部审查改了 6 处设计（真 blind、primary 改为 P(A)、headline 改为需求配对对比、
+> 修掉并发共享状态 bug、修掉分母不一致、删掉自相矛盾的 condition）；v0.3 依据第二轮审查修掉 4 个代码缺陷
+> （探测降参未被真正应用、逐 case 符号计数算错、case loader 未强制 relation、分布表分母混用），
+> 并把 H1 与 primary test 对齐。逐条处理记录见 `DESIGN.md` §11。
 
 用**最小**框架回答一个问题：
 
@@ -17,7 +19,7 @@ semantic judge、显著性检验。
 
 ---
 
-## 1. 核心设计（v0.2）
+## 1. 核心设计（v0.3）
 
 **自变量**：① 信封里展示的需求内容（无 / 空槽 / 中性 / 与当前方案冲突 / 支持当前方案）；
 ② 信封指令（无信封 / 明令忽略 / 允许使用）。
